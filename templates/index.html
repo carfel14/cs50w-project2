@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flack</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <form id='username-form', action="/", onsubmit="saveUsernameToLocalStorage(event)" method="POST">
+            <label for="username-input">Ingrese su nombre de usuario</label>
+            <input id='username-input' type="text" name="username" id="username">
+            <button type="submit">Entrar</button>
+            <h4 class="warning"></h4>
+    </form> 
+
+    <script>
+        function saveUsernameToLocalStorage(event){
+            const form = document.querySelector('#username-form')
+            const input = document.querySelector('#username-input')
+            const username = input.value
+
+            if (username.length === 0){
+                event.preventDefault()
+                const warning = document.querySelector('.warning')
+                warning.innerHTML = 'Ingrese un nombre válido'
+            }
+
+            localStorage.setItem('username', username)
+        }   
+    </script>
+</body>
+</html>
